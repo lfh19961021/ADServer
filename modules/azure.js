@@ -1,10 +1,17 @@
 /*
  * Import
  */
-const passport = require('passport');
-const passport_azure = require('passport-azure-ad');
-const debug = require('debug')('azure:modules');
-const config = require('../config/azuread');
+import passport from 'passport';
+import passport_azure from 'passport-azure-ad';
+import debug_js from 'debug';
+import config from '../config/azuread.js';
+
+const debug = debug_js('azure:modules');
+
+// const passport = require('passport');
+// const passport_azure = require('passport-azure-ad');
+// const debug = require('debug')('azure:modules');
+// const config = require('../config/azuread');
 
 /*
  * Azure AD Module
@@ -35,7 +42,7 @@ const azure = {
             }
           });
         },
-        out: (req) => {
+        out: (req, res, next) => {
           return new Promise((resolve, reject) => {
             try {
               req.logout();
@@ -128,8 +135,6 @@ const azure = {
         // response: null,
       };
 
-      console.log('openId');
-
       if (redirect) {
         options.failureRedirect = '/';
       }
@@ -152,7 +157,7 @@ const azure = {
       });
 
       passport.deserializeUser(async (userProfile, done) => {
-        done(null, userObj);
+        done(null, userProfile);
 
         // const userObj = await user.check.whitelist(userProfile);
 
@@ -176,8 +181,6 @@ const azure = {
         clientID: azure.config.application.clientId,
         clientSecret: azure.config.clientCredentials.secrets.value,
       };
-
-      console.log(options);
 
       passport.use(new passport_azure.OIDCStrategy(options, azure.get.openId.sign.in));
     },
@@ -209,4 +212,6 @@ const azure = {
 
 azure.init();
 
-module.exports = azure;
+// module.exports = azure;
+
+export default azure;

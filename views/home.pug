@@ -3,3 +3,11 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  a(href="/api/oauth/logout") Logout
+
+  p Hi, #{userName}
+  p OID: #{oid}
+
+
+  script(src="/socket.io/socket.io.js")
+  script(src="/javascripts/socket.js")

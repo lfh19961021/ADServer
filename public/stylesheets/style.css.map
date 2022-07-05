@@ -2,8 +2,8 @@
 	"version": 3,
 	"file": "style.css",
 	"sources": [
-		"style.sass"
+		"../../src/stylesheets/style.scss"
 	],
 	"names": [],
-	"mappings": "AAAA,AAAA,IAAI,CAAC;EACH,OAAO,EAAE,IAAI;EACb,IAAI,EAAE,kDAAkD,GAAG;;AAE7D,AAAA,CAAC,CAAC;EACA,KAAK,EAAE,OAAO,GAAG"
+	"mappings": "AAAA,AAAA,CAAC,AAAA,OAAO,CAAC;EACL,kBAAkB,EAAE,MAAM;EAC1B,eAAe,EAAE,MAAM;EACvB,UAAU,EAAE,MAAM;EAElB,eAAe,EAAE,IAAI;EACrB,KAAK,EAAE,OAAO,GACjB"
 }

@@ -1,6 +1,9 @@
-var express = require('express');
+import express from 'express';
+import azure from '../modules/azure.js';
+import socket from '../modules/socket.js';
+// var express = require('express');
 var router = express.Router();
-const azure = require('../modules/azure');
+// const azure = require('../modules/azure.js');
 
 /* GET OAuth Login page. */
 router.get('/login', function(req, res, next) {
@@ -8,9 +11,15 @@ router.get('/login', function(req, res, next) {
 });
 router.get('/', async (req, res, next) => {
     await azure.check.user(req, res);
-    // res.render('home', profile.get.page(req, 'Home Page'));
-    console.log(req.user);
-    res.render('home', { title: 'Home Page' });
+
+    // Set cookies
+    let oid = req.user.oid;
+    let userName = req.user.displayName
+    const expires = new Date(Date.now() + 1 * 3600000);
+    res.cookie('oid', oid, { expires });
+
+    res.render('home', { title: 'Home Page', userName, oid});
 });
 
-module.exports = router;
+// module.exports = router;
+export default router;

@@ -3,12 +3,18 @@
 /**
  * Module dependencies.
  */
-
-var app = require('../app');
+import app from '../app.js';
+import https from 'https';
+import fs from 'fs';
+import socket from '../modules/socket.js';
+// var app = require('../app');
 // var debug = require('debug')('server:server');
 // var http = require('http');
-const https = require('https');
-const fs = require('fs');
+// const https = require('https');
+// const fs = require('fs');
+
+
+//const socket = require("../modules/socket.js");
 
 const httpsOptions = {
   key: fs.readFileSync('./security/cert.key'),
@@ -27,6 +33,16 @@ app.set('port', port);
  */
 
 var server = https.createServer(httpsOptions, app);
+
+/**
+ * Socket.io
+ */
+var $store = app.get('$store');
+app.set('$store', {
+  ...$store,
+  socket: socket
+});
+socket.init(app.get('$store') , server);
 
 /**
  * Listen on provided port, on all network interfaces.
