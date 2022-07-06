@@ -9,7 +9,7 @@ const store = {
 
 	get: {
 		config() {
-			return dbConfig[([process.env.NODE_ENV] == 'production' ? 'websocket' : 'websocket')];
+			return dbConfig['websocket'];
 		},
 		options() {
 			return {
@@ -25,6 +25,8 @@ const store = {
 	},
   
 	init() {
+		// console.log(this.get.config());
+		// console.log(this.get.options());
 		this.object = new MSSQLStore(this.get.config(), this.get.options());
 
 		this.object.on('connect', () => {
@@ -32,15 +34,17 @@ const store = {
 		});
 
 		this.object.on('error', (error) => {
-			console.log('Session Store Connected');
+			console.log('Session Store ERROR');
 			console.error(error);
 		});
 
 		this.object.on('sessionError', (error, classMethod) => {
-			console.log('Session Store Connected');
+			console.log('Session Store sessionError');
 			console.error(error);
 			console.error(classMethod);
 		});
+
+		//console.log(this.object);
 	},
 };
 

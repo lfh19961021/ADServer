@@ -6,7 +6,6 @@ import viewsRouter from './views.js';
 // var express = require('express');
 // const apiRouter = require("./api");
 // const viewsRouter = require("./views");
-
 var router = express.Router();
 
 router.use("/", viewsRouter);

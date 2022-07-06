@@ -21,6 +21,11 @@ export default {
             // console.log("Online:  ", $store.userMapping);
             // console.log("Logout: ", $store.logoutMapping);
 
+            // console.debug("Last Update Time: ", lastUpdateTime);
+            // console.debug("Login:  ", $store.loginMapping);
+            // console.debug("Online:  ", $store.userMapping);
+            // console.debug("Logout: ", $store.logoutMapping);
+
 
             // this.printProgress();
         }, 500);
@@ -51,6 +56,10 @@ export default {
             socket.on("map_socket", (payload) => {
                 console.log('map_socket event');
                 this.pushLoginUser({...payload, socketId: socket.id});
+            });
+            socket.on("send_message", (payload) => {
+                console.log('get new meessage', payload);
+                io.emit('broadcast_message', payload);
             });
             socket.conn.on("close", (reason) => {
                 console.log('one disconnect');

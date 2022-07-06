@@ -1,3 +1,4 @@
+import dotenv from './modules/dotenv.js';
 
 import createError from 'http-errors';
 import express from 'express';
@@ -15,11 +16,9 @@ import helmet from 'helmet';
 import { fileURLToPath } from 'url';
 
 import db from './modules/store.js';
-
-import store from './config/globalStorage.js';
+import globalStorage from './config/globalStorage.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 
 // var createError = require('http-errors');
 // var express = require('express');
@@ -50,11 +49,12 @@ var app = express();
 //     .then(() => connection.invoke("send", "Hello"));
 
 app.use(helmet());
-app.set('$store', store);
+app.set('$store', globalStorage);
+
 
 app.use(session(
     {
-    //store: store,
+    store: db.object,
     resave: true,
     saveUninitialized: true,
     secret: 'Test-Secret-2022'
