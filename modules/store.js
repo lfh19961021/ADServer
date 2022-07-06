@@ -4,7 +4,7 @@ import dbConfig from '../config/mssql.js';
 /*
  * Store Module
  */
-export default {
+const store = {
 	object: null,
 
 	get: {
@@ -43,3 +43,7 @@ export default {
 		});
 	},
 };
+
+store.init();
+
+export default store;

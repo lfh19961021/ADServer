@@ -1,4 +1,22 @@
-
+/*
+ * MSSQL DB Config
+*/
 export default {
-    dbConnectionString: `Server=tcp:websocket-sql-server.database.windows.net,1433;Initial Catalog=websocket;Persist Security Info=False;User ID=fredlau@tontfok.com;Password=Lfh961021;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication="Active Directory Password";`
-}
+	websocket: {
+		server: 'websocket-sql-server.database.windows.net',
+    database: "websocket",
+		user: '',
+		password: '',
+    port: 1433,
+		requestTimeout: 10000,
+		pool: {
+			max: 10,
+			min: 0,
+			idleTimeoutMillis: 30000,
+		},
+		options: {
+			encrypt: false,
+			trustServerCertificate: false,
+		},
+	},
+};
