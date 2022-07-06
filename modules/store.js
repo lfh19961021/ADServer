@@ -1,5 +1,5 @@
 import MSSQLStore from 'connect-mssql-v2';
-import dbConfig from './db.js';
+import dbConfig from '../config/mssql.js';
 
 /*
  * Store Module

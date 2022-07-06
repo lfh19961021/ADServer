@@ -14,6 +14,8 @@ import flash from 'connect-flash';
 import helmet from 'helmet';
 import { fileURLToPath } from 'url';
 
+import db from './modules/store.js';
+
 import store from './config/globalStorage.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -89,6 +91,9 @@ app.use('/', indexRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+// db
+db.init();
 
 // error handler
 app.use(function(err, req, res, next) {
