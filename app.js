@@ -93,7 +93,7 @@ app.use(function(req, res, next) {
 });
 
 // db
-db.init();
+// db.init();
 
 // error handler
 app.use(function(err, req, res, next) {

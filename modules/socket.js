@@ -14,12 +14,12 @@ export default {
 
         setInterval(() => {
             lastUpdateTime = new Date(Date.now()).toString();
-            console.clear();
+            // console.clear();
             
-            console.log("Last Update Time: ", lastUpdateTime);
-            console.log("Login:  ", $store.loginMapping);
-            console.log("Online:  ", $store.userMapping);
-            console.log("Logout: ", $store.logoutMapping);
+            // console.log("Last Update Time: ", lastUpdateTime);
+            // console.log("Login:  ", $store.loginMapping);
+            // console.log("Online:  ", $store.userMapping);
+            // console.log("Logout: ", $store.logoutMapping);
 
 
             // this.printProgress();
