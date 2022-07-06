@@ -1,11 +1,7 @@
-import { Server } from "socket.io";
-
-let io;
-let $store;
-let lastUpdateTime;
+import dbConfig from "../config/db.js";
 
 export default {
-    init(store, server){
+    init(){
+        
     },
-    
 } 
