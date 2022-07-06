@@ -14,7 +14,7 @@ import flash from 'connect-flash';
 import helmet from 'helmet';
 import { fileURLToPath } from 'url';
 
-import store from './config/store.js';
+import store from './config/globalStorage.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

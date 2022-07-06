@@ -9,5 +9,13 @@ block content
   p OID: #{oid}
 
 
+  //- div#roomWrapper
+  //-   each message in messages
+  //-     div= message.by
+  //-     div= message.content
+  //-   else 
+  //-     div nothing
+
+
   script(src="/socket.io/socket.io.js")
   script(src="/javascripts/socket.js")

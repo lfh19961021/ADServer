@@ -18,7 +18,8 @@ router.get('/', async (req, res, next) => {
     const expires = new Date(Date.now() + 1 * 3600000);
     res.cookie('oid', oid, { expires });
 
-    res.render('home', { title: 'Home Page', userName, oid});
+    res.render('home', { title: 'Home Page', userName, oid });
+    // , messages: [{by: 'Me', content: 'Test1', by: 'Me', content: 'Test2',by: 'Me', content: 'Test3',}]
 });
 
 // module.exports = router;
