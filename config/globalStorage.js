@@ -3,6 +3,6 @@ export default {
     loginMapping: [],
     userMapping: [],
     logoutMapping: [],
-    loginBufferTime: 5000,
+    loginBufferTime: 2500,
     logoutBufferTime: 5000,
 }

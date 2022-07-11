@@ -53,13 +53,23 @@ export default {
             console.log('one connection in');
 
             // listen
-            socket.on("map_socket", (payload) => {
+            socket.on("map_socket", (payload, callback) => {
                 console.log('map_socket event');
                 this.pushLoginUser({...payload, socketId: socket.id});
+
+                // callback({
+                //     status: 'mapped'
+                // })
             });
-            socket.on("send_message", (payload) => {
+            socket.on("send_message", (payload, callback) => {
                 console.log('get new meessage', payload);
+                console.log();
+                payload.userName = $store.userMapping.find(currUser => currUser.socketId == payload.by)?.userName;
                 io.emit('broadcast_message', payload);
+
+                callback({
+                    status: 'ok'
+                })
             });
             socket.conn.on("close", (reason) => {
                 console.log('one disconnect');
@@ -97,20 +107,6 @@ export default {
     },
     removeLogoutUser(socketId){
         this.refreshQueue({socketId});
-    },
-    mapSocket(socketId, oid){
-        console.log(`mapping ${socketId} to ${oid}`);
-        let result = $store.userMapping.find((currMapping)=>currMapping.oid == oid)
-        if(result){
-            result.socketId = socketId;
-            console.log('have result', result);
-        } else {
-            $store.userMapping.push({
-                socketId,
-                oid
-            });
-            console.log('dont have result', $store.userMapping);
-        }
     },
     printProgress(){
         // process.stdout.clearLine();

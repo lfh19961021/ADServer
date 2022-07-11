@@ -17,6 +17,7 @@ router.get('/', async (req, res, next) => {
     let userName = req.user.displayName
     const expires = new Date(Date.now() + 1 * 3600000);
     res.cookie('oid', oid, { expires });
+    res.cookie('userName', userName, { expires });
 
     res.render('home', { title: 'Home Page', userName, oid });
     // , messages: [{by: 'Me', content: 'Test1', by: 'Me', content: 'Test2',by: 'Me', content: 'Test3',}]

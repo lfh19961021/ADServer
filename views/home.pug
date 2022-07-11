@@ -8,8 +8,18 @@ block content
   p Hi, #{userName}
   p OID: #{oid}
 
-  input#text
-  button Send
+  div#text-wrapper
+    input#text 
+    button#sendButton 
+      span#sendText Send
+      div.lds-ring.d-none
+        div
+        div
+        div
+        div
+  
+
+  div#roomWrappepr
 
   //- div#roomWrapper
   //-   each message in messages
@@ -18,6 +28,67 @@ block content
   //-   else 
   //-     div nothing
 
+
+  style.
+    * {
+      box-sizing: border-box;
+    }
+    #text-wrapper{
+      height: 34px;
+      display: flex;
+    }
+    #text{
+      height: 100%;
+    }
+    #sendButton{
+      height: 100%;
+      width: 80px;
+    }
+    .d-none{
+      display: none !important;
+    }
+    #roomWrappepr{
+      margin-top: 12px;
+    }
+
+
+
+
+
+    .lds-ring {
+      display: inline-block;
+      position: relative;
+      width: 20px;
+      height: 20px;
+    }  
+    .lds-ring div {
+      display: block;
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      margin: 4px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border-color: #000 transparent transparent transparent;
+    }
+    .lds-ring div:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+    .lds-ring div:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    .lds-ring div:nth-child(3) {
+      animation-delay: -0.15s;
+    }
+    @keyframes lds-ring {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
 
   script(src="/socket.io/socket.io.js")
   script(src="/javascripts/socket.js")
